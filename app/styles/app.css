@@ -1,0 +1,6 @@
+@import "./recipe-card.css";
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+}

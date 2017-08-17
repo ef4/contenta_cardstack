@@ -1,0 +1,7 @@
+{{cs-field content "title"}}
+
+<div class="card-container">
+  {{#cardstack-search query=(hash type="recipes") as |item|}}
+    {{cardstack-content content=item format="card"}}
+  {{/cardstack-search}}
+</div>

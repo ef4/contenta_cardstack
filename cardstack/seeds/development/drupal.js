@@ -29,13 +29,48 @@ const openAPIPatch = [
     path: "/definitions/node:tutorial/properties/type/enum",
     value: ["node--tutorial"]
   },
+  {
+    op: "add",
+    path: "/definitions/media:image/properties/type/enum",
+    value: ["images"]
+  },
+  {
+    op: "add",
+    path: "/definitions/file:file/properties/type/enum",
+    value: ["files"]
+  },
 
   // Workaround for https://www.drupal.org/node/2902112
   {
     op: "replace",
     path: "/basePath",
     value: "/"
+  },
+
+  // Workaround for https://www.drupal.org/node/2902710
+  {
+    op: "replace",
+    path: "/definitions/node:recipe/properties/relationships/properties/image/properties/data/properties/type/enum",
+    value: ["images"]
+  },
+  {
+    op: "replace",
+    path: "/definitions/node:article/properties/relationships/properties/image/properties/data/properties/type/enum",
+    value: ["images"]
+  },
+  {
+    op: "replace",
+    path: "/definitions/media:image/properties/relationships/properties/imageFile/properties/data/properties/type/enum",
+    value: ["files"]
+  },
+  {
+    op: "replace",
+    path: "/definitions/media:image/properties/relationships/properties/thumbnail/properties/data/properties/type/enum",
+    value: ["files"]
   }
+
+
+
 ];
 
 module.exports = [
@@ -55,7 +90,8 @@ module.exports = [
         url: 'http://localhost',
         dataSourceId: 'contenta',
         authToken: process.env.DRUPAL_TOKEN,
-        openAPIPatch
+        openAPIPatch,
+        edVersion: 2
       }
     }
   }
