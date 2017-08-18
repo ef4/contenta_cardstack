@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@cardstack/drupal": "*",
+    "@cardstack/drupal-auth": "*",
     "@cardstack/ephemeral": "*",
     "@cardstack/hub": "*",
     "@cardstack/jsonapi": "*",

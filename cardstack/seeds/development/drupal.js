@@ -39,6 +39,11 @@ const openAPIPatch = [
     path: "/definitions/file:file/properties/type/enum",
     value: ["files"]
   },
+  {
+    op: "add",
+    path: "/definitions/user:user/properties/type/enum",
+    value: ["users"]
+  },
 
   // Workaround for https://www.drupal.org/node/2902112
   {
@@ -88,10 +93,8 @@ module.exports = [
       'source-type': '@cardstack/drupal',
       params: {
         url: 'http://localhost',
-        dataSourceId: 'contenta',
         authToken: process.env.DRUPAL_TOKEN,
-        openAPIPatch,
-        edVersion: 2
+        openAPIPatch
       }
     }
   }
