@@ -48,7 +48,8 @@
     "@cardstack/jsonapi": "*",
     "@cardstack/models": "*",
     "@cardstack/routing": "*",
-    "@cardstack/search": "*"
+    "@cardstack/search": "*",
+    "@cardstack/tools": "*"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
