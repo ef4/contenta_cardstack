@@ -7,3 +7,9 @@ body {
     margin: 0;
     background-color: #e3e3e3;
 }
+
+/* overriding a default style from the cardstack tools. They assume
+   different scrollbar behavior that we've got */
+.above-toolbox {
+    margin-right: 0;
+}
