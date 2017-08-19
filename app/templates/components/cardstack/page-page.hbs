@@ -1,6 +1,7 @@
 <div class="page-page">
+  {{input value=userTerm type="text"}}
   <div class="card-container">
-    {{#cardstack-search query=(hash type="recipes") as |item|}}
+    {{#cardstack-search query=(build-query type="recipes" q=userTerm) as |item|}}
       {{cardstack-content content=item format="card"}}
     {{/cardstack-search}}
   </div>
