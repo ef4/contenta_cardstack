@@ -98,7 +98,7 @@ module.exports = [
   },
   {
     type: 'data-sources',
-    id: 'contenta',
+    id: 'drupal',
     attributes: {
       'source-type': '@cardstack/drupal',
       params: {

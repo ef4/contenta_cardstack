@@ -7,7 +7,7 @@
     {{#if session.isAuthenticated }}
       <button {{action session.logout}}>Logout {{session.user.name}}</button>
     {{else}}
-      {{#drupal-login source="contenta" as |login|}}
+      {{#drupal-login as |login|}}
         <button {{action login}}>Login</button>
       {{/drupal-login}}
     {{/if}}

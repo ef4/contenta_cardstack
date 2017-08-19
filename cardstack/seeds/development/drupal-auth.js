@@ -10,7 +10,7 @@ module.exports = [
   },
   {
     type: 'authentication-sources',
-    id: 'contenta',
+    id: 'drupal',
     attributes: {
       'authenticator-type': '@cardstack/drupal-auth',
       params: {
