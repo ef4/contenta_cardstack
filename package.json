@@ -15,7 +15,7 @@
     "test": "ember test"
   },
   "devDependencies": {
-    "@cardstack/test-support": "*",
+    "@cardstack/test-support": "0.2.4",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.14.2",
@@ -43,15 +43,15 @@
     "squishable-container": "^0.1.0"
   },
   "dependencies": {
-    "@cardstack/drupal": "*",
-    "@cardstack/drupal-auth": "*",
-    "@cardstack/ephemeral": "*",
-    "@cardstack/hub": "*",
-    "@cardstack/jsonapi": "*",
-    "@cardstack/models": "*",
-    "@cardstack/routing": "*",
-    "@cardstack/search": "*",
-    "@cardstack/tools": "*"
+    "@cardstack/drupal": "0.2.4",
+    "@cardstack/drupal-auth": "0.2.4",
+    "@cardstack/ephemeral": "0.2.4",
+    "@cardstack/hub": "0.2.4",
+    "@cardstack/jsonapi": "0.2.4",
+    "@cardstack/models": "0.2.4",
+    "@cardstack/routing": "0.2.4",
+    "@cardstack/search": "0.2.4",
+    "@cardstack/tools": "0.2.4"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"

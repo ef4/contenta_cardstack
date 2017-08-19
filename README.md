@@ -22,14 +22,26 @@ In addition, you will need to have read-write access to a Contenta site. You can
 
 ## Running / Development
 
-1. Start up a preconfigured local elasticsearch via:
+0. Log into Contenta and configure [Simple Oauth](https://www.drupal.org/project/simple_oauth).
+
+1. You need to have runnign elasticsearch. You can either download and run it manually, or start up a preconfigured local elasticsearch via:
 
         docker run -d -p 9200:9200 cardstack/elasticsearch:dev
     
 2. Search for `url` in cardstack/seeds/development/drupal.js and set it to your Contenta site's URL. It defaults to 'http://localhost'.
 
+2. Set the DRUPAL_TOKEN environment variable to a valid oauth2 access token. @cardstack/hub will use this identity when speaking to Drupal (optional passthrough auth is planned but not implemented).
+
 3. `ember serve`
+
 4. Visit your app at [http://localhost:4200](http://localhost:4200).
+
+## Debugging Cardstack Hub
+
+The @cardstack/hub server process runs inside ember-cli in development. To get much more debug out about what it's doing, set the environment variables:
+
+    DEBUG=cardstack/*
+    DEBUG_LEVEL=info (or debug or trace)
 
 ## Further Reading / Useful Links
 
