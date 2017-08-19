@@ -1,45 +1,35 @@
-# umami
+# Contenta Demo using Cardstack
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is a demonstration of how to build an app around [Contenta](http://www.contentacms.org/)) using [Cardstack](https://github.com/cardstack/cardstack).
 
 ## Prerequisites
 
-You will need the following things properly installed on your computer.
+Cardstack is moving toward a fully Dockerized architecture that will reduce this prerequisites list, but here's what you'll need to run it today:
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with NPM)
+* [Node.js](https://nodejs.org/)
+* [Yarn](http://yarnpkg.com/)
 * [Ember CLI](https://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* [Docker](https://www.docker.com/)
+
+In addition, you will need to have read-write access to a Contenta site. You can either follow the instructions on http://www.contentacms.org/ or try a Docker-based setup like https://github.com/ef4/contenta_docker
 
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd umami`
-* `npm install`
+* `cd contenta_cardstack`
+* `yarn install`
 
 ## Running / Development
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+1. Start up a preconfigured local elasticsearch via:
 
-### Code Generators
+        docker run -d -p 9200:9200 cardstack/elasticsearch:dev
+    
+2. Search for `url` in cardstack/seeds/development/drupal.js and set it to your Contenta site's URL. It defaults to 'http://localhost'.
 
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
+3. `ember serve`
+4. Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ## Further Reading / Useful Links
 
