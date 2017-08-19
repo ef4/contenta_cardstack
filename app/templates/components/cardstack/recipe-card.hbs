@@ -1,4 +1,11 @@
 <a class="recipe-card" href={{cardstack-url content}}>
-  <img src="{{content.image.imageFile.url}}">
-  {{content.title}}
+  <div class="image-holder" style="background-image: url({{content.image.imageFile.url}})">
+    <div class="image-cover"></div>
+  </div>
+  <div class="text-holder">
+    <h3>{{content.title}}</h3>
+    <div>
+      {{svg-jar "timer"}} {{content.preparationTime}} min
+    </div>
+  </div>
 </a>

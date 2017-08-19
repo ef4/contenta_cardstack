@@ -1,0 +1,13 @@
+.site-header {
+    height: 2em;
+    background-color: #9910f2;
+    display: flex;
+    font-family: Roboto,Helvetica Neue,sans-serif;
+    padding: 0 1.5em;
+}
+
+.site-header > .site-title {
+    flex: 1;
+    color: white;
+    line-height: 2em;
+}
