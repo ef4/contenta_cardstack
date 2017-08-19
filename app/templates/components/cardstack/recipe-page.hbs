@@ -1,5 +1,65 @@
 <div class="recipe-page">
-  <img src={{content.image.imageFile.url}}>
-  <h1>{{content.title}}</h1>
-  <p>{{content.instructions}}</p>
+  <section>
+    <h1>{{content.title}}</h1>
+  </section>
+  <section>
+    <div class="image-holder">
+      <img src={{content.image.imageFile.url}}>
+    </div>
+    <div class="intro">
+      {{#cs-field content "preparationTime" as |prepTime|}}
+        {{#if prepTime}}
+          <div>
+            {{svg-jar "timer"}}
+            <div>Prep Time: {{prepTime}} minutes</div>
+          </div>
+        {{/if}}
+      {{/cs-field}}
+
+      {{#cs-field content "preparationTime" as |cookTime|}}
+        {{#if cookTime}}
+          <div>
+           {{svg-jar "cooking-time"}}
+           <div>Cooking Time: {{cookTime}} minutes</div>
+          </div>
+        {{/if}}
+      {{/cs-field}}
+
+      {{#cs-field content "numberOfServices" as |people|}}
+        {{#if people}}
+          <div>
+            {{svg-jar "serves"}}
+            Serves: {{people}}
+          </div>
+        {{/if}}
+      {{/cs-field}}
+
+      {{#cs-field content "difficulty" as |difficulty|}}
+        {{#if difficulty}}
+          <div>
+            {{svg-jar "drop"}}
+            Difficulty: {{difficulty}}
+          </div>
+        {{/if}}
+      {{/cs-field}}
+
+
+    </div>
+  </section>
+
+  <section>
+    <ul class="ingredients">
+      <h3>Ingredients</h3>
+      {{#cs-field content "ingredients" as |ingredients|}}
+        {{#each ingredients as |ingredient|}}
+          <li>{{ingredient}}</li>
+        {{/each}}
+      {{/cs-field}}
+    </ul>
+    <div class="instructions">
+      <h3>Method</h3>
+      {{content.instructions}}
+    </div>
+  </section>
+
 </div>
