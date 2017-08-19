@@ -44,6 +44,16 @@ const openAPIPatch = [
     path: "/definitions/user:user/properties/type/enum",
     value: ["users"]
   },
+  {
+    op: "add",
+    path: "/definitions/taxonomy_term:category/properties/type/enum",
+    value: ["categories"]
+  },
+  {
+    op: "add",
+    path: "/definitions/taxonomy_term:tags/properties/type/enum",
+    value: ["tags"]
+  },
 
   // Workaround for https://www.drupal.org/node/2902112
   {

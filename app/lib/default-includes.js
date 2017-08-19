@@ -1,7 +1,7 @@
 import Adapter from "@cardstack/models/adapter";
 
 let defaults = {
-  recipe: 'image.image-file'
+  recipe: 'image.image-file,tags'
 };
 
 export default Adapter.extend({
