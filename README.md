@@ -16,25 +16,75 @@ In addition, you will need to have read-write access to a Contenta site. You can
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd contenta_cardstack`
-* `yarn install`
+### Get the necessary Code
 
-## Running / Development
+* Clone the Contenta Cardstack repo with ``git clone https://github.com/ef4/contenta_cardstack``
+* Install Contenta Cardstack dependencies
+    * ``cd contenta_cardstack``
+    * ``yarn install`` 
+* Clone Contenta Docker with ``git clone https://github.com/ef4/contenta_docker``
 
-0. Log into Contenta and configure [Simple Oauth](https://www.drupal.org/project/simple_oauth).
+### Build Contenta Docker
+It's probably a very good idea to ensure that any other development servers you might be running are off during this initial provision to avoid any networking conflicts or other inexplicable strangeness. 
+* Change directory into the contenta_docker repository, wherever you cloned it.
+* ``docker compose build``
+* ``docker compose up`` (Alternatively, use ``docker composer up -d``to avoid having your terminal session taken over.)
+* Install Drupal with ``docker exec contentadocker_php_1 init-drupal``
+* Copy and paste the login URL you are presented with and log in to Drupal
+* Create password for your Drupal account.  You will be needing this later.
+* Ensure that your Drupal user has the admin role
 
-1. You need to have runnign elasticsearch. You can either download and run it manually, or start up a preconfigured local elasticsearch via:
+### Set up Oauth
 
-        docker run -d -p 9200:9200 cardstack/elasticsearch:dev
-    
-2. Search for `url` in cardstack/seeds/development/drupal.js and set it to your Contenta site's URL. It defaults to 'http://localhost'.
+* While still logged in to Drupal, visit ``/admin/config/people/simple_oauth``
+* Add token expiration time values (access and refresh) to a very large number (Something like 30000000 would do).
+* Public key ``/var/www/public.key``
+* private Key ``/var/www/private.key``
+* Implicit Grant ENABLE
+* Save Configuration
+* Click ADD CLIENT
+* Label ``Cardstack``
+* New Secret - enter a new secret, and take note of it.  You will be needing it later
+* Scopes - Check Administrator
+* Hit save
 
-2. Set the DRUPAL_TOKEN environment variable to a valid oauth2 access token. @cardstack/hub will use this identity when speaking to Drupal (optional passthrough auth is planned but not implemented).
+### Create Oauth Token
+Use this curl command (or other REST Client) to retreive the Oauth token from Drupal (You may need to remove the line breaks):
 
-3. `ember serve`
+``
+curl -X POST \
+  http://localhost/oauth/token \
+  -H ‘cache-control: no-cache’ \
+  -H ‘content-type: application/x-www-form-urlencoded’ \
+  -d ‘client_id=<clientID>&client_secret=<secret>&grant_type=password&username=admin&password=<admin_password>’
+``
+In the ``client_id`` section, you will need to set the following values:
 
-4. Visit your app at [http://localhost:4200](http://localhost:4200).
+* client ID: uuid seen on ```/admin/config/people/simple_oauth/oauth2_client```
+* secret: The secret set on the Oauch client.
+* admin_password: The passsword for the Drupal admin user.
+
+ For example:
+``client_id=f2a9c03e-421b-477b-af10-e272c1771732&client_secret=the%20cardstack%20password&grant_type=password&username=admin&password=test``
+
+This will return access and refresh tokens - You will want to retain the access token for the next steps.
+
+### Install Elasticsearch Container
+** ``docker run -d -p 9200:9200 cardstack/elasticsearch:dev``
+
+### Configure Cardstack
+* Change directory into contenta_cardstack project
+* ``cd cardstack/seeds/development``
+* edit ``drupal-auth.js``
+* set clientId and client secret from above values
+* edit ``drupal.js``
+* Update authToken (at end of file) with the access token returned from the curl command
+
+###  Start Cardstack
+* Change directory back to contenta_cardstack root
+* ``ember serve``
+
+Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ## Debugging Cardstack Hub
 
