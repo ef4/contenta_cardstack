@@ -56,7 +56,7 @@ curl -X POST \
   http://localhost/oauth/token \
   -H ‘cache-control: no-cache’ \
   -H ‘content-type: application/x-www-form-urlencoded’ \
-  -d ‘client_id=<clientID>&client_secret=<secret>&grant_type=password&username=admin&password=<admin_password>’
+  -d ‘client_id=<clientID>&client_secret=<secret>&grant_type=password&scope=administrator&username=admin&password=<admin_password>’
 ``
 In the ``client_id`` section, you will need to set the following values:
 
